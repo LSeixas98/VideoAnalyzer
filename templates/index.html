@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANALISADOR DE VÍDEO MUSICAL</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <center>
+          <h3>ANALISADOR DE VÍDEO MUSICAL</h3>
+          <p>Extraia informações de tutoriais de música do YouTube</p>
+        </center>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="main-content">
+          <div class="form-group">
+            <label for="videoUrl">URL do Vídeo do YouTube:</label>
+            <div class="url-input-group">
+              <input
+                type="url"
+                id="videoUrl"
+                name="videoUrl"
+                placeholder="Cole aqui o link do vídeo (ex: https://youtube.com/watch?v=...)"
+              />
+              <button onclick="analyzeVideo()">Analisar</button>
+            </div>
+          </div>
+
+          <div class="options-section">
+            <h3 class="options-title">Opções de Análise:</h3>
+            <div class="options-grid">
+              <div class="option-item">
+                <input type="checkbox" id="extractChords" checked />
+                <label for="extractChords">Extrair acordes</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="detectInstruments" checked />
+                <label for="detectInstruments">Detectar instrumentos</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="analyzeStructure" checked />
+                <label for="analyzeStructure">Analisar estrutura musical</label>
+              </div>
+              <div class="option-item">
+                <input type="checkbox" id="extractTab" checked />
+                <label for="extractTab">Extrair tablatura</label>
+              </div>
+            </div>
+          </div>
+
+          <div id="status" style="display: none"></div>
+
+          <div id="result-section" style="display: none">
+            <h2 class="result-title">Resultado da Análise</h2>
+
+            <div class="result-tabs">
+              <button
+                class="tab-button active"
+                onclick="openTab(event, 'tabTabela')"
+              >
+                Tabela
+              </button>
+              <button class="tab-button" onclick="openTab(event, 'tabJSON')">
+                JSON
+              </button>
+            </div>
+
+            <div id="tabTabela" class="tab-content active">
+              <div id="resultTableContainer"></div>
+            </div>
+
+            <div id="tabJSON" class="tab-content">
+              <div class="button-group">
+                <button id="btnExpandAll" onclick="toggleAllSections(true)">
+                  Expandir Tudo
+                </button>
+                <button id="btnCollapseAll" onclick="toggleAllSections(false)">
+                  Recolher Tudo
+                </button>
+              </div>
+              <div id="collapsibleJson"></div>
+            </div>
+          </div>
+
+          <div class="disclaimer">
+            <strong>Nota:</strong> Esta ferramenta depende da disponibilidade da
+            API. Certifique-se de que o servidor esteja rodando no IP
+            configurado.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Analisador de Vídeo Musical | Desenvolvido para fins
+          educacionais
+        </p>
+      </div>
+    </footer>
+
+    <!-- Configuração da API -->
+    <script>
+      // Valores injetados pelo Flask
+      const API_HOST_IP = "{{ api_host }}";
+      const API_PORT = {{ api_port }};
+      const API_ENDPOINT = `http://${API_HOST_IP}:${API_PORT}/analyze`;
+    </script>
+
+    <!-- Scripts da aplicação -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
