@@ -25,14 +25,6 @@ Esta aplicação permite que professores, estudantes e criadores de conteúdo mu
 - **Visualização JSON:** Alternativa mais técnica com dados expansíveis/retráteis
 - **Análise detalhada:** Saída estruturada para fácil interpretação e integração com outros sistemas
 
-## 📺 Demonstração Rápida
-
-![Demo Analisador de Vídeo](https://via.placeholder.com/800x400?text=Demo+Analisador+de+Video+Tutorial)
-
-Exemplo de análise do vídeo tutorial "Como tocar Blackbird (The Beatles)":
-- URL: https://www.youtube.com/watch?v=example123
-- Resultados: Didática excelente (pontuação 5/5), identificados acordes Am, C, G e detecção de tablatura aos 2:45.
-
 ## 📦 Pré-requisitos
 
 - Python 3.8 ou superior
