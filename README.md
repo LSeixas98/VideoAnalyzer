@@ -4,9 +4,9 @@
 # Music Tutorial Video Analyzer
 A web application that uses AI to analyze YouTube music tutorial videos, providing insights about teaching quality and musical content through transcription.
 
-![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white)
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/-Flask-000000?style=flat&logo=flask&logoColor=white)
+![GitHub](https://img.shields.io/github/license/LSeixas98/VideoAnalyzer)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Flask](https://img.shields.io/badge/flask-2.2.3-green)
 
 ## 📋 Description
 This application allows music teachers, students, and content creators to analyze the pedagogical quality and musical structure of YouTube video tutorials. The system:
@@ -261,7 +261,7 @@ To run automated tests:
 If you use this project in research or academic work, please cite as:
 
 ```
-Seixas, L. (2025). VideoAnalyzer: A tool for analyzing music tutorial videos. 
+Seixas, L. F. C. (2025). VideoAnalyzer: A tool for analyzing music tutorial videos. 
 GitHub: https://github.com/LSeixas98/VideoAnalyzer
 ```
 
