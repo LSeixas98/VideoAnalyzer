@@ -1,3 +1,6 @@
+[![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
+[![Portuguese](https://img.shields.io/badge/Idioma-Português-green.svg)](README.pt-br.md)
+
 # Analisador de Vídeo Tutorial de Música
 
 Uma aplicação web que utiliza IA para analisar vídeos tutoriais de música do YouTube, fornecendo insights sobre a qualidade didática e conteúdo musical através da transcrição.
