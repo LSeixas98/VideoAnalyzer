@@ -1,311 +1,284 @@
 [![English](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
 [![Portuguese](https://img.shields.io/badge/Idioma-Português-green.svg)](README.pt-br.md)
 
-# Analisador de Vídeo Tutorial de Música
+# Music Tutorial Video Analyzer
+A web application that uses AI to analyze YouTube music tutorial videos, providing insights about teaching quality and musical content through transcription.
 
-Uma aplicação web que utiliza IA para analisar vídeos tutoriais de música do YouTube, fornecendo insights sobre a qualidade didática e conteúdo musical através da transcrição.
+![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat&logo=github&logoColor=white)
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/-Flask-000000?style=flat&logo=flask&logoColor=white)
 
-![GitHub](https://img.shields.io/github/license/LSeixas98/VideoAnalyzer)
-![Python](https://img.shields.io/badge/python-3.8%2B-blue)
-![Flask](https://img.shields.io/badge/flask-2.2.3-green)
+## 📋 Description
+This application allows music teachers, students, and content creators to analyze the pedagogical quality and musical structure of YouTube video tutorials. The system:
 
-## 📋 Descrição
+- Automatically extracts video transcription
+- Uses Google Gemini 1.5 Flash for advanced analysis
+- Evaluates teaching methods, language, and level appropriateness
+- Identifies instruments, chords, and musical structure
+- Provides detailed scores and feedback
 
-Esta aplicação permite que professores, estudantes e criadores de conteúdo musical possam analisar a qualidade pedagógica e a estrutura musical de tutoriais em vídeo no YouTube. O sistema:
+## 🚀 Features
+- **Customized analysis**: Select which aspects you want to analyze (chords, instruments, musical structure, tablature)
+- **Multilingual support**: Transcriptions in Portuguese, English, and other languages
+- **Intuitive interface**: Responsive design for use on any device
+- **Table visualization**: View results in a structured tabular format
+- **JSON visualization**: More technical alternative with expandable/collapsible data
+- **Detailed analysis**: Structured output for easy interpretation and integration with other systems
 
-- Extrai automaticamente a transcrição do vídeo
-- Utiliza o Google Gemini 1.5 Flash para análise avançada
-- Avalia a didática, linguagem e adequação do nível
-- Identifica instrumentos, acordes e estrutura musical
-- Fornece pontuações e feedback detalhado
+## 📦 Prerequisites
+- Python 3.8 or higher
+- Google Gemini API key (see setup instructions)
+- Internet connection
 
-## 🚀 Funcionalidades
+## ⚙️ Installation and Setup
+Clone the repository:
+```
+git clone https://github.com/LSeixas98/VideoAnalyzer.git
+cd VideoAnalyzer
+```
 
-- **Análise personalizada:** Selecione quais aspectos deseja analisar (acordes, instrumentos, estrutura musical, tablatura)
-- **Suporte multilíngue:** Transcrições em português, inglês e outros idiomas
-- **Interface intuitiva:** Design responsivo para uso em qualquer dispositivo
-- **Visualização em tabela:** Veja os resultados em formato tabular estruturado
-- **Visualização JSON:** Alternativa mais técnica com dados expansíveis/retráteis
-- **Análise detalhada:** Saída estruturada para fácil interpretação e integração com outros sistemas
+Install dependencies:
+```
+# Recommended method: use virtual environment
+python -m venv venv
 
-## 📦 Pré-requisitos
+# Activate the virtual environment
+# On Windows PowerShell:
+.\venv\Scripts\Activate.ps1
+# On Windows CMD:
+venv\Scripts\activate.bat
+# On Linux/macOS:
+source venv/bin/activate
 
-- Python 3.8 ou superior
-- Chave de API do Google Gemini (veja as instruções de configuração)
-- Conexão com a Internet
+# Install dependencies in the virtual environment
+pip install -r requirements.txt
+```
 
-## ⚙️ Instalação e Configuração
+Configure environment variables: Create a `.env` file in the project root with the following content:
+```
+# Gemini API Configuration
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-1.5-flash-latest
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/LSeixas98/VideoAnalyzer.git
-   cd VideoAnalyzer
-   ```
+# Server Configuration
+API_HOST=127.0.0.1
+API_PORT=5000
+```
 
-2. **Instale as dependências:**
-   ```bash
-   # Método recomendado: usar ambiente virtual
-   python -m venv venv
-   
-   # Ativar o ambiente virtual
-   # No Windows PowerShell:
-   .\venv\Scripts\Activate.ps1
-   # No Windows CMD:
-   venv\Scripts\activate.bat
-   # No Linux/macOS:
-   source venv/bin/activate
-   
-   # Instalar as dependências no ambiente virtual
-   pip install -r requirements.txt
-   ```
+For local network use, update the API_HOST with your machine's IP:
+```
+API_HOST=192.168.1.100  # Replace with your local network IP
+```
 
-3. **Configure as variáveis de ambiente:**
-   Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
-   ```
-   # Configuração da API Gemini
-   GEMINI_API_KEY=sua_chave_api_aqui
-   GEMINI_MODEL=gemini-1.5-flash-latest
+## 🔧 Usage
+Start the server:
+```
+python app.py
+```
 
-   # Configuração do servidor
-   API_HOST=127.0.0.1
-   API_PORT=5000
-   ```
+Access the application: Open a browser and go to:
+```
+http://localhost:5000  # For local access
+# OR
+http://192.168.1.100:5000  # For local network access (replace with your IP)
+```
 
-   Para uso em rede local, atualize o `API_HOST` com o IP da sua máquina:
-   ```
-   API_HOST=192.168.1.100  # Substitua pelo seu IP na rede local
-   ```
+Use the application:
+1. Paste the YouTube URL in the input field
+2. Select the desired analysis options
+3. Click "Analyze"
+4. Wait for processing (may take a few moments)
+5. Toggle between table and JSON views to see the results
 
-## 🔧 Uso
+## 🔧 Troubleshooting
+### pip Permission Issues on Windows
+If you encounter permission errors like `[WinError 5] Access denied` when installing packages with pip, try these solutions:
 
-1. **Inicie o servidor:**
-   ```bash
-   python app.py
-   ```
+Use virtual environments (recommended):
+```
+# Navigate to the project directory
+cd path/to/VideoAnalyzer
 
-2. **Acesse a aplicação:**
-   Abra um navegador e acesse:
-   ```
-   http://localhost:5000  # Para acesso local
-   # OU
-   http://192.168.1.100:5000  # Para acesso na rede local (substitua pelo seu IP)
-   ```
+# Create a virtual environment
+python -m venv .venv
 
-3. **Utilize a aplicação:**
-   - Cole a URL do YouTube no campo de entrada
-   - Selecione as opções de análise desejadas
-   - Clique em "Analisar"
-   - Aguarde o processamento (pode levar alguns instantes)
-   - Alterne entre as visualizações de tabela e JSON para ver os resultados
+# Activate the virtual environment
+# On PowerShell:
+.\.venv\Scripts\Activate.ps1
+# On CMD:
+.\.venv\Scripts\activate.bat
 
-## 🔧 Solução de Problemas
+# Install dependencies in the virtual environment
+python -m pip install -r requirements.txt
+```
 
-### Problemas com Permissões do pip no Windows
+Run as administrator: If you prefer to install globally, run Command Prompt or PowerShell as administrator.
 
-Se você encontrar erros de permissão como `[WinError 5] Acesso negado` ao instalar pacotes com pip, tente as seguintes soluções:
+Install for current user only:
+```
+pip install -r requirements.txt --user
+```
 
-1. **Utilize ambientes virtuais** (recomendado):
-   ```bash
-   # Navegue até o diretório do projeto
-   cd caminho/para/VideoAnalyzer
-   
-   # Crie um ambiente virtual
-   python -m venv .venv
-   
-   # Ative o ambiente virtual
-   # No PowerShell:
-   .\.venv\Scripts\Activate.ps1
-   # No CMD:
-   .\.venv\Scripts\activate.bat
-   
-   # Instale as dependências no ambiente virtual
-   python -m pip install -r requirements.txt
-   ```
+### Modules Not Found
+If you receive the error `ModuleNotFoundError: No module named 'google'` or similar:
 
-2. **Execute como administrador**:
-   Se preferir instalar globalmente, execute o prompt de comando ou PowerShell como administrador.
+- Check if you're using the correct virtual environment (if you created one)
+- Confirm all dependencies were installed:
+```
+pip list
+```
+- Reinstall specific dependencies:
+```
+pip install google-generativeai youtube-transcript-api
+```
 
-3. **Instale apenas para o usuário atual**:
-   ```bash
-   pip install -r requirements.txt --user
-   ```
-
-### Módulos não encontrados
-
-Se receber o erro `ModuleNotFoundError: No module named 'google'` ou similar:
-
-1. Verifique se está usando o ambiente virtual correto (caso tenha criado um)
-2. Confirme que todas as dependências foram instaladas:
-   ```bash
-   pip list
-   ```
-3. Reinstale as dependências específicas:
-   ```bash
-   pip install google-generativeai youtube-transcript-api
-   ```
-
-## 📂 Estrutura do Projeto
-
+## 📂 Project Structure
 ```
 analisador-video-musical/
 │
-├── app.py                # Aplicação principal
-├── requirements.txt      # Dependências do projeto
-├── .env                  # Arquivo de configuração (não incluído no repositório)
-├── README.md             # Este arquivo
-├── LICENSE               # Licença do projeto
+├── app.py                # Main application
+├── requirements.txt      # Project dependencies
+├── .env                  # Configuration file (not included in the repository)
+├── README.md             # This file
+├── LICENSE               # Project license
 │
-├── static/               # Arquivos estáticos
+├── static/               # Static files
 │   ├── css/
-│   │   └── styles.css    # Estilos da aplicação
+│   │   └── styles.css    # Application styles
 │   │
 │   └── js/
-│       └── script.js     # JavaScript da aplicação
+│       └── script.js     # Application JavaScript
 │
-└── templates/            # Templates HTML
-    └── index.html        # Interface principal
+└── templates/            # HTML Templates
+    └── index.html        # Main interface
 ```
 
-## 🧩 Tecnologias Utilizadas
+## 🧩 Technologies Used
+- Backend: Flask (Python)
+- Frontend: HTML, CSS, JavaScript
+- Caption API: YouTube Transcript API
+- AI: Google Gemini 1.5 Flash
+- Data Formatting: JSON
+- Configuration: python-dotenv
 
-- **Backend:** Flask (Python)
-- **Frontend:** HTML, CSS, JavaScript
-- **API de Legendas:** YouTube Transcript API
-- **IA:** Google Gemini 1.5 Flash
-- **Formatação de Dados:** JSON
-- **Configuração:** python-dotenv
-
-## ✅ Exemplo de Resposta
-
-A API retorna um JSON estruturado com a análise detalhada do vídeo, por exemplo:
+## ✅ Response Example
+The API returns a structured JSON with detailed video analysis, for example:
 
 ```json
 {
-  "avaliacaoVideo": "Vídeo ID xyzABC123",
-  "urlVideo": "https://www.youtube.com/watch?v=xyzABC123",
-  "dataAvaliacao": "2025-04-16",
-  "avaliador": "Gemini API (gemini-1.5-flash-latest)",
-  "pontosAvaliacao": {
-    "didaticaExplicacao": {
-      "pontuacao": 4,
-      "observacoes": "Explicação clara e bem estruturada..."
+  "videoEvaluation": "Video ID xyzABC123",
+  "videoUrl": "https://www.youtube.com/watch?v=xyzABC123",
+  "evaluationDate": "2025-04-16",
+  "evaluator": "Gemini API (gemini-1.5-flash-latest)",
+  "evaluationPoints": {
+    "teachingMethod": {
+      "score": 4,
+      "observations": "Clear and well-structured explanation..."
     },
-    "linguagemUtilizada": {
-      "pontuacao": 5,
-      "observacoes": "Linguagem acessível e adequada ao público..."
+    "languageUsed": {
+      "score": 5,
+      "observations": "Accessible language appropriate for the audience..."
     },
-    "adequacaoNivel": {
-      "nivelEstimadoVideo": "Intermediário",
-      "complexidadeAcordes": {
-        "tipos": "Naturais, Com Pestana, Suspensos",
-        "contagemAproximada": "Moderado (5-10)"
+    "levelAdequacy": {
+      "estimatedVideoLevel": "Intermediate",
+      "chordComplexity": {
+        "types": "Natural, Barred, Suspended",
+        "approximateCount": "Moderate (5-10)"
       },
-      "complexidadeTecnica": "Dedilhado, Palhetada alternada",
-      "pontuacao": 4,
-      "observacoes": "Conteúdo bem balanceado para o nível proposto..."
+      "technicalComplexity": "Fingerpicking, Alternate picking",
+      "score": 4,
+      "observations": "Well-balanced content for the proposed level..."
     }
   },
-  "pontuacaoGeral": 4,
-  "comentariosGerais": "Excelente tutorial com boa didática...",
-  "acordesIdentificados": ["C", "Am", "F", "G7"],
-  "instrumentosIdentificados": ["Violão", "Guitarra"],
-  "estruturaMusical": {
-    "partes": ["Intro", "Verso", "Refrão"],
-    "progressao": "I-vi-IV-V em Dó Maior",
-    "tonalidade": "Dó Maior"
+  "overallScore": 4,
+  "generalComments": "Excellent tutorial with good teaching methods...",
+  "identifiedChords": ["C", "Am", "F", "G7"],
+  "identifiedInstruments": ["Acoustic Guitar", "Electric Guitar"],
+  "musicalStructure": {
+    "parts": ["Intro", "Verse", "Chorus"],
+    "progression": "I-vi-IV-V in C Major",
+    "key": "C Major"
   },
-  "tablatura": {
-    "presente": true,
-    "observacoes": "Tablatura para introdução mostrada aos 2:45"
+  "tablature": {
+    "present": true,
+    "observations": "Tablature for introduction shown at 2:45"
   }
 }
 ```
 
-## 👨‍💻 Desenvolvimento
+## 👨‍💻 Development
+### Environment Configuration
+#### .env File
+The .env file allows configuring the application for different environments:
 
-### Configuração do Ambiente
+- Local development: Use `API_HOST=127.0.0.1`
+- Local network: Use `API_HOST=` with your machine's IP on the network
+- Production: Use `API_HOST=0.0.0.0` to listen on all interfaces
 
-#### Arquivo .env
-O arquivo `.env` permite configurar a aplicação para diferentes ambientes:
+Finding your local network IP:
+- Windows: Use the `ipconfig` command in Command Prompt
+- Linux: Use `ip addr show` or `ifconfig` in Terminal
+- macOS: Use `ifconfig | grep inet` in Terminal
 
-- **Desenvolvimento local:** Use `API_HOST=127.0.0.1`
-- **Rede local:** Use `API_HOST=` com o IP da sua máquina na rede
-- **Produção:** Use `API_HOST=0.0.0.0` para escutar em todas as interfaces
+### Adding New Features
+To add new analysis criteria:
 
-#### Encontrar seu IP na rede local:
-- **Windows:** Use o comando `ipconfig` no Prompt de Comando
-- **Linux:** Use `ip addr show` ou `ifconfig` no Terminal
-- **macOS:** Use `ifconfig | grep inet` no Terminal
-
-### Adicionar Novas Funcionalidades
-
-Para adicionar novos critérios de análise:
-
-1. Adicione os novos checkboxes no `index.html`
-2. Atualize o objeto `optionsAnalise` no JavaScript
-3. Modifique a função `analyze_video_with_gemini` em `app.py` para incluir os novos parâmetros no prompt do Gemini
-4. Atualize o esquema JSON de saída
+1. Add new checkboxes in index.html
+2. Update the optionsAnalise object in JavaScript
+3. Modify the analyze_video_with_gemini function in app.py to include new parameters in the Gemini prompt
+4. Update the JSON output schema
 
 ## 🛣️ Roadmap
+Planned features for future versions:
 
-Funcionalidades planejadas para futuras versões:
+- [ ] Analysis of complex harmonic progressions
+- [ ] Support for videos without captions (audio analysis)
+- [ ] PDF report export
+- [ ] Comparison between multiple videos
+- [ ] Enhanced user interface
+- [ ] Public API for integration with other applications
 
-- [ ] Análise de progressões harmônicas complexas
-- [ ] Suporte para vídeos sem legendas (análise de áudio)
-- [ ] Exportação de relatório em PDF
-- [ ] Comparação entre múltiplos vídeos
-- [ ] Interface de usuário aprimorada
-- [ ] API pública para integração com outras aplicações
+## 📝 Known Limitations
+- Depends on the availability of captions/transcriptions in the YouTube video
+- Analysis quality depends on the clarity of the transcription
+- The Gemini API has token limits that may affect very long videos
+- Some automatic captions may contain errors that affect the analysis
 
-## 📝 Limitações Conhecidas
+## 🔒 Security
+- Keep your Gemini API key secure in the .env file
+- Add .env to your .gitignore file to avoid sharing your credentials
+- In production environments, restrict CORS to specific domains
+- For increased security, consider using system environment variables instead of the .env file
 
-- Depende da disponibilidade de legendas/transcrições no vídeo do YouTube
-- A qualidade da análise depende da clareza da transcrição
-- A API Gemini tem limites de tokens que podem afetar vídeos muito longos
-- Algumas legendas automáticas podem conter erros que afetam a análise
-
-## 🔒 Segurança
-
-- Mantenha sua chave API Gemini segura no arquivo `.env`
-- Adicione `.env` ao seu arquivo `.gitignore` para não compartilhar suas credenciais
-- Em ambientes de produção, restrinja o CORS para domínios específicos
-- Para maior segurança, considere usar variáveis de ambiente do sistema em vez do arquivo `.env`
-
-## 🧪 Testes
-
-Para executar os testes automatizados:
-
-```bash
-# Ainda não implementado
+## 🧪 Tests
+To run automated tests:
+```
+# Not yet implemented
 # pytest tests/
 ```
 
-## 📚 Como Citar
-
-Se você utilizar este projeto em pesquisas ou trabalhos acadêmicos, por favor cite como:
+## 📚 How to Cite
+If you use this project in research or academic work, please cite as:
 
 ```
-Seixas, L. (2025). VideoAnalyzer: Uma ferramenta de análise de tutoriais de música em vídeo. 
+Seixas, L. (2025). VideoAnalyzer: A tool for analyzing music tutorial videos. 
 GitHub: https://github.com/LSeixas98/VideoAnalyzer
 ```
 
-## 👏 Créditos
+## 👏 Credits
+This project uses the following technologies and libraries:
 
-Este projeto utiliza as seguintes tecnologias e bibliotecas:
+- Flask
+- YouTube Transcript API
+- Google Gemini API
+- Python-dotenv
 
-- [Flask](https://flask.palletsprojects.com/)
-- [YouTube Transcript API](https://github.com/jdepoix/youtube-transcript-api)
-- [Google Gemini API](https://ai.google.dev/gemini-api)
-- [Python-dotenv](https://github.com/theskumar/python-dotenv)
+## 📜 License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📜 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
-
-## 🤝 Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+## 🤝 Contributions
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ---
 
-Desenvolvido com ❤️ para a comunidade musical
+Developed with ❤️ for the music community
