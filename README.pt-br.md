@@ -285,7 +285,7 @@ Para executar os testes automatizados:
 Se você utilizar este projeto em pesquisas ou trabalhos acadêmicos, por favor cite como:
 
 ```
-Seixas, L. (2025). VideoAnalyzer: Uma ferramenta de análise de tutoriais de música em vídeo. 
+Seixas, L. F. C. (2025). VideoAnalyzer: A tool for analyzing music tutorial videos.
 GitHub: https://github.com/LSeixas98/VideoAnalyzer
 ```
 
